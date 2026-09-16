@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="{{ url_for('home') }}">Home</a><span class="sep">/</span>Manufacturing</div>
+    <h1>From Concept to Production</h1>
+    <p>A structured, transparent process that takes a requirement from initial design through to final delivery.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="timeline">
+      {% for step in steps %}
+      <div class="timeline-step">
+        <div class="timeline-num">{{ loop.index }}</div>
+        <div class="timeline-content">
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--navy">
+  <div class="container two-col">
+    <div class="visual-block reveal-scale">
+      <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-factory"/></svg>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Built for Scale</span>
+      <h2 style="font-size: clamp(26px,3.4vw,32px);">Prototype to Full-Scale Production</h2>
+      <p style="color:#b9c6d9; font-size: 16px;">Whether you need a small batch of prototypes or ongoing bulk production, our manufacturing process is structured to scale with your requirements while maintaining consistent quality.</p>
+      <a href="{{ url_for('quality') }}" class="btn btn-secondary" style="margin-top:8px;">
+        See Our Quality Process
+        <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-arrow"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <div>
+      <h2>Ready to start your project?</h2>
+      <p>Send us your requirement and we'll guide you through the process.</p>
+    </div>
+    <a href="{{ url_for('request_quote') }}" class="btn btn-primary">Request a Quote</a>
+  </div>
+</section>
+
+{% endblock %}

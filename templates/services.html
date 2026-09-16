@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="{{ url_for('home') }}">Home</a><span class="sep">/</span>Services</div>
+    <h1>Engineering &amp; Manufacturing Services</h1>
+    <p>End-to-end support from component design through production, testing, and delivery.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-4 stagger">
+      {% for service in services %}
+      <div class="card service-card reveal" style="--i: {{ loop.index0 }};">
+        <div class="icon-wrap">
+          <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-{{ service.icon }}"/></svg>
+        </div>
+        <h3>{{ service.name }}</h3>
+        <p>{{ service.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <div>
+      <h2>Need a service tailored to your project?</h2>
+      <p>Share your requirement and our engineering team will respond with next steps.</p>
+    </div>
+    <a href="{{ url_for('request_quote') }}" class="btn btn-primary">Request a Quote</a>
+  </div>
+</section>
+
+{% endblock %}

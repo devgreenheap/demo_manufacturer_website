@@ -1,0 +1,42 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="{{ url_for('home') }}" class="brand">
+          <span class="brand-mark">GE</span>
+          GIO Electronics
+        </a>
+        <p>{{ company.tagline }}</p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="{{ url_for('about') }}">About Us</a></li>
+          <li><a href="{{ url_for('manufacturing') }}">Manufacturing</a></li>
+          <li><a href="{{ url_for('quality') }}">Quality</a></li>
+          <li><a href="{{ url_for('industries') }}">Industries</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Products &amp; Services</h4>
+        <ul>
+          <li><a href="{{ url_for('products') }}">Products</a></li>
+          <li><a href="{{ url_for('services') }}">Services</a></li>
+          <li><a href="{{ url_for('request_quote') }}">Request a Quote</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>{{ company.phone }}</li>
+          <li>{{ company.email }}</li>
+          <li>{{ company.address }}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 GIO Electronics. All Rights Reserved.</span>
+      <span>Engineering Components for a Connected World.</span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="{{ url_for('home') }}">Home</a><span class="sep">/</span>About</div>
+    <h1>Building Reliable Electronics for a Connected World</h1>
+    <p>An electronics manufacturing and engineering company focused on precision, quality, and dependable customer support.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container two-col">
+    <div class="reveal">
+      <span class="eyebrow">About GIO Electronics</span>
+      <h2 style="font-size: clamp(26px,3.4vw,32px); color: var(--navy);">Who We Are</h2>
+      <p style="color:var(--muted); font-size: 16.5px;">GIO Electronics is an electronics manufacturing and engineering company focused on delivering reliable components, assemblies, and customized manufacturing solutions for modern businesses.</p>
+      <p style="color:var(--muted); font-size: 16.5px;">Our focus is simple: precision manufacturing, consistent quality, and dependable customer support.</p>
+    </div>
+    <div class="visual-block reveal-scale">
+      <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-quality"/></svg>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why Choose Us</span>
+      <h2>Why GIO Electronics</h2>
+    </div>
+    <div class="grid grid-3 stagger">
+      {% for item in why_gio %}
+      <div class="card why-card reveal" style="--i: {{ loop.index0 }};">
+        <div class="icon-wrap">
+          <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-{{ item.icon }}"/></svg>
+        </div>
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <div>
+      <h2>Let's build something reliable together.</h2>
+      <p>Reach out with your component or manufacturing requirement.</p>
+    </div>
+    <a href="{{ url_for('request_quote') }}" class="btn btn-primary">Request a Quote</a>
+  </div>
+</section>
+
+{% endblock %}

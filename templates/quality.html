@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="{{ url_for('home') }}">Home</a><span class="sep">/</span>Quality</div>
+    <h1>Quality Built Into Every Component</h1>
+    <p>Structured inspection and testing at every stage of manufacturing, from incoming material to final packaging.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-3 stagger">
+      {% for point in quality_points %}
+      <div class="card quality-card reveal" style="--i: {{ loop.index0 }};">
+        <div class="icon-wrap">
+          <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-{{ point.icon }}"/></svg>
+        </div>
+        <h3>{{ point.name }}</h3>
+        <p>{{ point.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container two-col">
+    <div class="visual-block reveal-scale">
+      <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-quality"/></svg>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Inspection at Every Stage</span>
+      <h2 style="font-size: clamp(26px,3.4vw,32px); color: var(--navy);">Checked Before It Ever Leaves Our Facility</h2>
+      <p style="color:var(--muted); font-size: 16px;">Every component passes through defined checkpoints — from incoming material to final packaging — so what reaches you matches what was specified.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--navy">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">What This Means for You</span>
+      <h2>Quality You Can Depend On</h2>
+    </div>
+    <div class="grid grid-4">
+      {% for card in trust_cards %}
+      <div class="trust-card reveal">
+        <h3>{{ card.name }}</h3>
+        <p>{{ card.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <div>
+      <h2>Have specific quality requirements?</h2>
+      <p>Tell us about your project and inspection needs.</p>
+    </div>
+    <a href="{{ url_for('request_quote') }}" class="btn btn-primary">Request a Quote</a>
+  </div>
+</section>
+
+{% endblock %}

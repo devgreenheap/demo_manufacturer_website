@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="auth-layout">
+
+  <div class="auth-visual">
+    <div class="hero-grid"></div>
+    <div class="auth-illus-wrap reveal">
+      <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-factory"/></svg>
+    </div>
+    <div class="auth-copy reveal">
+      <span class="eyebrow">Welcome Back</span>
+      <h2>Pick Up Where You Left Off.</h2>
+      <p>Log in to check the status of your quote requests and submit new ones faster.</p>
+      <ul class="auth-bullets">
+        <li>
+          <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-check"/></svg>
+          See every request you've submitted
+        </li>
+        <li>
+          <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-check"/></svg>
+          Your details are pre-filled automatically
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="auth-form-panel">
+    <div class="auth-form-inner">
+      <span class="eyebrow">Account</span>
+      <h1>Log In</h1>
+      <p>Welcome back to GIO Electronics.</p>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ 'success' if category == 'success' else 'error' }}">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      <form action="{{ url_for('login') }}" method="post" novalidate>
+        <input type="hidden" name="next" value="{{ next }}">
+        <div class="field">
+          <label for="email">Email <span class="req">*</span></label>
+          <input type="email" id="email" name="email" placeholder="you@company.com" value="{{ form_data.get('email', '') }}" required>
+        </div>
+        <div class="field">
+          <label for="password">Password <span class="req">*</span></label>
+          <input type="password" id="password" name="password" placeholder="Your password" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Log In</button>
+      </form>
+      <p class="auth-switch">Don't have an account? <a href="{{ url_for('signup') }}">Sign up</a></p>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

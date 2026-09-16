@@ -1,0 +1,27 @@
+{% macro card(product) %}
+<div class="card product-card reveal">
+  <div class="media">
+    {% set photo = product_image(product.slug) %}
+    {% if photo %}
+      <img class="media-photo" src="{{ url_for('static', filename=photo) }}" alt="{{ product.name }}" loading="lazy">
+    {% else %}
+      <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-{{ product.illustration }}"/></svg>
+    {% endif %}
+    <span class="media-badge">
+      <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-{{ product.icon }}"/></svg>
+    </span>
+  </div>
+  <div class="body">
+    <span class="cat">{{ product.category }}</span>
+    <h3>{{ product.name }}</h3>
+    <p>{{ product.description }}</p>
+    <div class="actions">
+      <a href="{{ url_for('product_detail', slug=product.slug) }}" class="link-arrow">
+        View Details
+        <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-arrow"/></svg>
+      </a>
+      <a href="{{ url_for('request_quote', product=product.name) }}" class="btn btn-outline btn-sm">Request Quote</a>
+    </div>
+  </div>
+</div>
+{% endmacro %}

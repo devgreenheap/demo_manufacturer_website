@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="{{ url_for('home') }}">Home</a><span class="sep">/</span>Contact</div>
+    <h1>Get in Touch</h1>
+    <p>Reach out with questions about components, manufacturing services, or a specific project requirement.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container contact-layout">
+    <div class="reveal">
+      <span class="eyebrow">Contact Information</span>
+      <h2 style="font-size: 26px; color: var(--navy);">GIO Electronics</h2>
+      <p style="color: var(--muted);">Electronic Components Manufacturing &amp; Engineering Solutions</p>
+
+      <div class="contact-item">
+        <div class="icon-wrap"><svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-phone"/></svg></div>
+        <div>
+          <h3>Phone</h3>
+          <p>{{ company.phone }}</p>
+          <span class="placeholder-note">Placeholder number</span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="icon-wrap"><svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-mail"/></svg></div>
+        <div>
+          <h3>Email</h3>
+          <p>{{ company.email }}</p>
+          <span class="placeholder-note">Placeholder address</span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="icon-wrap"><svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-location"/></svg></div>
+        <div>
+          <h3>Address</h3>
+          <p>{{ company.address }}</p>
+          <span class="placeholder-note">Placeholder location</span>
+        </div>
+      </div>
+
+      <div class="map-block">
+        <iframe
+          src="https://www.google.com/maps?q={{ company.address | urlencode }}&output=embed"
+          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="GIO Electronics location (placeholder address)">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="form-card reveal">
+      <h2 style="font-size: 22px; color: var(--navy); margin-bottom: 22px;">Send Us a Message</h2>
+      <form action="{{ url_for('request_quote') }}" method="get">
+        <div class="field">
+          <label>Full Name <span class="req">*</span></label>
+          <input type="text" name="full_name" placeholder="Your full name" required>
+        </div>
+        <div class="field">
+          <label>Email <span class="req">*</span></label>
+          <input type="email" name="email" placeholder="you@company.com" required>
+        </div>
+        <div class="field">
+          <label>Message <span class="req">*</span></label>
+          <textarea name="message" placeholder="How can we help?" required></textarea>
+        </div>
+        <p class="field-hint">This form leads to our full Request a Quote page, where enquiries are logged for our team.</p>
+        <button type="submit" class="btn btn-primary btn-block">Continue to Request a Quote</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

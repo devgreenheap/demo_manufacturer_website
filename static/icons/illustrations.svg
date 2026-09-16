@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+
+  <!-- Mobile Components -->
+  <symbol id="illus-mobile" viewBox="0 0 240 160">
+    <rect x="94" y="14" width="66" height="132" rx="12" fill="#fff" stroke="#0B1F33" stroke-width="2.2"/>
+    <rect x="104" y="28" width="46" height="86" rx="3" fill="#eef3fb" stroke="#0B1F33" stroke-width="1.2"/>
+    <circle cx="127" cy="120" r="6" fill="none" stroke="#0B1F33" stroke-width="1.6"/>
+    <rect x="115" y="18" width="24" height="4" rx="2" fill="#0B1F33" opacity=".5"/>
+    <rect x="112" y="132" width="30" height="8" rx="2" fill="#1479FF"/>
+    <path d="M142 136h20a4 4 0 0 1 4 4v2" fill="none" stroke="#1479FF" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="184" cy="60" r="3" fill="#FF6A00"/>
+    <path d="M184 60v-20m0 0-8 8m8-8 8 8" fill="none" stroke="#FF6A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/>
+    <circle cx="60" cy="96" r="3" fill="#1479FF"/>
+    <path d="M60 96h-24" fill="none" stroke="#1479FF" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+    <circle cx="188" cy="112" r="16" fill="none" stroke="#0B1F33" stroke-width="1.4" stroke-dasharray="2 4" opacity=".5"/>
+  </symbol>
+
+  <!-- Computing Components -->
+  <symbol id="illus-computing" viewBox="0 0 240 160">
+    <rect x="60" y="34" width="120" height="76" rx="4" fill="#fff" stroke="#0B1F33" stroke-width="2.2"/>
+    <rect x="70" y="44" width="100" height="56" rx="2" fill="#eef3fb" stroke="#0B1F33" stroke-width="1.2"/>
+    <path d="M40 132 L200 132 L188 112 L52 112 Z" fill="#fff" stroke="#0B1F33" stroke-width="2.2" stroke-linejoin="round"/>
+    <rect x="106" y="120" width="28" height="4" rx="2" fill="#0B1F33" opacity=".4"/>
+    <rect x="184" y="52" width="14" height="8" rx="1.5" fill="none" stroke="#1479FF" stroke-width="1.8"/>
+    <path d="M198 56h14" stroke="#1479FF" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="220" cy="56" r="3" fill="#1479FF"/>
+    <path d="M78 76h4M86 76h4M94 76h4" stroke="#FF6A00" stroke-width="2" stroke-linecap="round"/>
+    <path d="M42 40 L42 20 M42 20 L34 28 M42 20 L50 28" stroke="#0B1F33" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity=".45"/>
+  </symbol>
+
+  <!-- Consumer Electronics -->
+  <symbol id="illus-consumer" viewBox="0 0 240 160">
+    <rect x="46" y="30" width="140" height="84" rx="4" fill="#fff" stroke="#0B1F33" stroke-width="2.2"/>
+    <rect x="56" y="40" width="120" height="64" rx="2" fill="#eef3fb" stroke="#0B1F33" stroke-width="1.2"/>
+    <path d="M100 114 L100 126 M132 114 L132 126" stroke="#0B1F33" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M84 132 L148 132" stroke="#0B1F33" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M70 60 h20 M70 68 h32 M70 76 h14" stroke="#1479FF" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+    <rect x="186" y="66" width="16" height="10" rx="1.5" fill="none" stroke="#0B1F33" stroke-width="1.6"/>
+    <path d="M202 71h14" stroke="#0B1F33" stroke-width="1.8" stroke-linecap="round" opacity=".6"/>
+    <circle cx="222" cy="71" r="3" fill="#FF6A00"/>
+    <path d="M46 46 q-14 24 0 48" fill="none" stroke="#1479FF" stroke-width="1.6" opacity=".4"/>
+  </symbol>
+
+  <!-- Appliance Components -->
+  <symbol id="illus-appliance" viewBox="0 0 240 160">
+    <rect x="72" y="14" width="96" height="132" rx="10" fill="#fff" stroke="#0B1F33" stroke-width="2.2"/>
+    <circle cx="120" cy="92" r="34" fill="#eef3fb" stroke="#0B1F33" stroke-width="2"/>
+    <circle cx="120" cy="92" r="22" fill="none" stroke="#0B1F33" stroke-width="1.4" stroke-dasharray="3 5" opacity=".55"/>
+    <circle cx="86" cy="30" r="4" fill="none" stroke="#1479FF" stroke-width="1.8"/>
+    <circle cx="100" cy="30" r="4" fill="none" stroke="#1479FF" stroke-width="1.8"/>
+    <rect x="120" y="24" width="34" height="10" rx="3" fill="none" stroke="#0B1F33" stroke-width="1.6"/>
+    <circle cx="120" cy="92" r="5" fill="#FF6A00"/>
+    <path d="M186 60 h20 M186 60a10 10 0 1 1 0 20 10 10 0 0 1 0-20Z" fill="none" stroke="#0B1F33" stroke-width="1.8" opacity=".7"/>
+  </symbol>
+
+  <!-- Electronic Components -->
+  <symbol id="illus-electronic" viewBox="0 0 240 160">
+    <rect x="46" y="26" width="148" height="108" rx="6" fill="#0B1F33" opacity=".04" stroke="#0B1F33" stroke-width="2.2"/>
+    <path d="M60 46h40 M60 60h60 M60 74h30 M60 96h50 M60 110h34" stroke="#1479FF" stroke-width="1.6" stroke-linecap="round" opacity=".55"/>
+    <rect x="120" y="42" width="34" height="24" rx="2" fill="#fff" stroke="#0B1F33" stroke-width="1.8"/>
+    <rect x="128" y="80" width="46" height="18" rx="2" fill="#fff" stroke="#0B1F33" stroke-width="1.8"/>
+    <circle cx="70" cy="100" r="3.2" fill="#FF6A00"/>
+    <circle cx="150" cy="112" r="3.2" fill="#FF6A00"/>
+    <path d="M194 60v-8h14 M194 84v8h14" stroke="#0B1F33" stroke-width="1.8" stroke-linecap="round" opacity=".6"/>
+  </symbol>
+
+  <!-- Manufacturing line -->
+  <symbol id="illus-factory" viewBox="0 0 240 160">
+    <path d="M30 118h180" stroke="#0B1F33" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="54" cy="118" r="7" fill="none" stroke="#0B1F33" stroke-width="1.8"/>
+    <circle cx="98" cy="118" r="7" fill="none" stroke="#0B1F33" stroke-width="1.8"/>
+    <circle cx="142" cy="118" r="7" fill="none" stroke="#0B1F33" stroke-width="1.8"/>
+    <circle cx="186" cy="118" r="7" fill="none" stroke="#0B1F33" stroke-width="1.8"/>
+    <rect x="66" y="94" width="26" height="20" rx="2" fill="#fff" stroke="#1479FF" stroke-width="2"/>
+    <rect x="150" y="90" width="30" height="24" rx="2" fill="#fff" stroke="#FF6A00" stroke-width="2"/>
+    <path d="M110 60 L110 96 M110 60 l-16 10 M110 60 l16 10" stroke="#0B1F33" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="110" cy="52" r="8" fill="none" stroke="#0B1F33" stroke-width="2"/>
+    <path d="M200 60 v20 M192 68h16" stroke="#1479FF" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+  </symbol>
+
+  <!-- Quality / precision -->
+  <symbol id="illus-quality" viewBox="0 0 240 160">
+    <rect x="92" y="62" width="56" height="36" rx="3" fill="#fff" stroke="#0B1F33" stroke-width="2.2"/>
+    <path d="M100 70h8 M100 78h16 M100 86h10" stroke="#1479FF" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+    <circle cx="150" cy="60" r="30" fill="none" stroke="#0B1F33" stroke-width="2.2"/>
+    <path d="M172 82 L196 106" stroke="#0B1F33" stroke-width="6" stroke-linecap="round"/>
+    <path d="M138 60 l8 8 16-18" fill="none" stroke="#FF6A00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="60" cy="110" r="4" fill="#1479FF"/>
+    <path d="M60 110 h20" stroke="#1479FF" stroke-width="1.6" opacity=".5"/>
+  </symbol>
+
+</svg>

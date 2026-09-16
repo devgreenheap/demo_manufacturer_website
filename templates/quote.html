@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="{{ url_for('home') }}">Home</a><span class="sep">/</span>Request a Quote</div>
+    <h1>Request a Quote</h1>
+    <p>Tell us about your component or manufacturing requirement and our team will respond with a tailored quote.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width: 760px;">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ 'success' if category == 'success' else 'error' }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% if static_build %}
+    <form class="form-card reveal" name="quote-request" method="post" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" novalidate>
+      <input type="hidden" name="form-name" value="quote-request">
+      <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+    {% else %}
+    <form class="form-card reveal" action="{{ url_for('request_quote') }}" method="post" enctype="multipart/form-data" novalidate>
+    {% endif %}
+      <div class="form-row">
+        <div class="field">
+          <label for="full_name">Full Name <span class="req">*</span></label>
+          <input type="text" id="full_name" name="full_name" placeholder="Your full name" value="{{ form_data.get('full_name', '') }}" required>
+        </div>
+        <div class="field">
+          <label for="company_name">Company Name <span class="req">*</span></label>
+          <input type="text" id="company_name" name="company_name" placeholder="Your company name" value="{{ form_data.get('company_name', '') }}" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="email">Email <span class="req">*</span></label>
+          <input type="email" id="email" name="email" placeholder="you@company.com" value="{{ form_data.get('email', '') }}" required>
+        </div>
+        <div class="field">
+          <label for="phone">Phone <span class="req">*</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX" value="{{ form_data.get('phone', '') }}" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="product_service">Product / Service</label>
+          <select id="product_service" name="product_service">
+            <option value="">Select a product or service</option>
+            {% for product in products %}
+            <option value="{{ product.name }}" {{ 'selected' if (form_data.get('product_service') or preselected) == product.name }}>{{ product.name }}</option>
+            {% endfor %}
+            <option value="Custom Manufacturing Service" {{ 'selected' if form_data.get('product_service') == 'Custom Manufacturing Service' }}>Custom Manufacturing Service</option>
+            <option value="Other" {{ 'selected' if form_data.get('product_service') == 'Other' }}>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="quantity">Quantity</label>
+          <input type="text" id="quantity" name="quantity" placeholder="e.g. 5,000 units" value="{{ form_data.get('quantity', '') }}">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="message">Requirement / Message <span class="req">*</span></label>
+        <textarea id="message" name="message" placeholder="Describe your requirement, application, and any specifications." required>{{ form_data.get('message', '') }}</textarea>
+      </div>
+
+      <div class="field">
+        <label>Upload Drawing / Specification</label>
+        <div class="file-drop">
+          <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-upload"/></svg>
+          <div>Click to upload or drag and drop</div>
+          <span class="field-hint">PDF, image, DWG/DXF, or ZIP — up to 10MB</span>
+          <span class="file-name"></span>
+        </div>
+        <input type="file" id="attachment" name="attachment" style="display:none;">
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">Submit Request</button>
+    </form>
+  </div>
+</section>
+
+{% endblock %}

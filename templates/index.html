@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% from "partials/product_card.html" import card %}
+{% block content %}
+
+<section class="hero">
+  <canvas class="hero-canvas"></canvas>
+  <div class="hero-grid"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <h1>Engineering Components for a Connected World.</h1>
+      <p>GIO Electronics delivers precision-engineered electronic components and manufacturing solutions designed for modern devices, industrial applications, and connected technologies.</p>
+      <div class="hero-actions">
+        <a href="{{ url_for('products') }}" class="btn btn-primary">
+          Explore Products
+          <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-arrow"/></svg>
+        </a>
+        <a href="{{ url_for('request_quote') }}" class="btn btn-secondary">Request a Quote</a>
+      </div>
+    </div>
+
+    <div class="trust-bar">
+      {% for item in trust_indicators %}
+      <div class="trust-item">
+        <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-{{ item.icon }}"/></svg>
+        {{ item.name }}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Products</span>
+      <h2>Electronic Components Built for Performance</h2>
+      <p>Precision-manufactured components across mobile, computing, consumer, appliance, and industrial applications.</p>
+    </div>
+    <div class="grid grid-3">
+      {% for product in products %}
+        {{ card(product) }}
+      {% endfor %}
+    </div>
+    <div style="text-align:center; margin-top: 44px;">
+      <a href="{{ url_for('products') }}" class="btn btn-outline">
+        Explore All Products
+        <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-arrow"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--navy">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why GIO Electronics</span>
+      <h2>A Manufacturing Partner You Can Rely On</h2>
+    </div>
+    <div class="grid grid-3">
+      {% for item in why_gio %}
+      <div class="trust-card reveal">
+        <svg class="icon" style="width:32px;height:32px;color:var(--orange);margin-bottom:14px;"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-{{ item.icon }}"/></svg>
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container two-col">
+    <div class="reveal">
+      <span class="eyebrow">From Concept to Production</span>
+      <h2 style="font-size: clamp(26px,3.4vw,34px); color: var(--navy);">A Structured Manufacturing Process</h2>
+      <p style="color:var(--muted); font-size: 16px;">From requirement gathering to final delivery, every component moves through a defined process built around precision and quality control.</p>
+      <a href="{{ url_for('manufacturing') }}" class="btn btn-outline" style="margin-top:8px;">
+        See Our Process
+        <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-arrow"/></svg>
+      </a>
+    </div>
+    <div class="visual-block reveal-scale">
+      <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-factory"/></svg>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <div>
+      <h2>Have a component or project in mind?</h2>
+      <p>Tell us your requirement and our team will get back to you with a tailored quote.</p>
+    </div>
+    <a href="{{ url_for('request_quote') }}" class="btn btn-primary">Request a Quote</a>
+  </div>
+</section>
+
+{% endblock %}

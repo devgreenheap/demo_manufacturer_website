@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="{{ url_for('home') }}">Home</a><span class="sep">/</span>Industries</div>
+    <h1>Industries We Serve</h1>
+    <p>Supplying precision components and manufacturing services across a wide range of technology-driven industries.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-4 stagger">
+      {% for industry in industries %}
+      <div class="card industry-card reveal" style="--i: {{ loop.index0 }};">
+        <div class="icon-wrap">
+          <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-{{ industry.icon }}"/></svg>
+        </div>
+        <h3>{{ industry.name }}</h3>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <div>
+      <h2>Don't see your industry listed?</h2>
+      <p>We work with businesses across many technology-driven sectors — get in touch to discuss your requirement.</p>
+    </div>
+    <a href="{{ url_for('request_quote') }}" class="btn btn-primary">Request a Quote</a>
+  </div>
+</section>
+
+{% endblock %}

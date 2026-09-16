@@ -1,0 +1,48 @@
+<nav class="navbar">
+  <div class="container">
+    <a href="{{ url_for('home') }}" class="brand">
+      <span class="brand-mark">GE</span>
+      GIO Electronics
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="{{ url_for('home') }}" class="{{ 'is-active' if request.endpoint == 'home' }}">Home</a></li>
+      <li><a href="{{ url_for('about') }}" class="{{ 'is-active' if request.endpoint == 'about' }}">About</a></li>
+      <li><a href="{{ url_for('products') }}" class="{{ 'is-active' if request.endpoint in ['products', 'product_detail'] }}">Products</a></li>
+      <li><a href="{{ url_for('services') }}" class="{{ 'is-active' if request.endpoint == 'services' }}">Services</a></li>
+      <li><a href="{{ url_for('manufacturing') }}" class="{{ 'is-active' if request.endpoint == 'manufacturing' }}">Manufacturing</a></li>
+      <li><a href="{{ url_for('industries') }}" class="{{ 'is-active' if request.endpoint == 'industries' }}">Industries</a></li>
+      <li><a href="{{ url_for('contact') }}" class="{{ 'is-active' if request.endpoint == 'contact' }}">Contact</a></li>
+      {% if not static_build %}
+        {% if current_customer_name %}
+          <li class="mobile-only"><a href="{{ url_for('account') }}" class="{{ 'is-active' if request.endpoint == 'account' }}">My Account</a></li>
+          <li class="mobile-only">
+            <form action="{{ url_for('logout') }}" method="post"><button type="submit" class="btn btn-outline btn-block">Log Out</button></form>
+          </li>
+        {% else %}
+          <li class="mobile-only"><a href="{{ url_for('login') }}" class="{{ 'is-active' if request.endpoint == 'login' }}">Log In</a></li>
+          <li class="mobile-only"><a href="{{ url_for('signup') }}" class="btn btn-outline btn-block">Sign Up</a></li>
+        {% endif %}
+      {% endif %}
+      <li class="mobile-only"><a href="{{ url_for('request_quote') }}" class="btn btn-primary btn-block">Request a Quote</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      {% if not static_build %}
+        {% if current_customer_name %}
+          <a href="{{ url_for('account') }}" class="nav-text-link desktop-only">My Account</a>
+          <form action="{{ url_for('logout') }}" method="post" class="desktop-only"><button type="submit" class="nav-text-link">Log Out</button></form>
+        {% else %}
+          <a href="{{ url_for('login') }}" class="nav-text-link desktop-only">Log In</a>
+          <a href="{{ url_for('signup') }}" class="nav-text-link desktop-only">Sign Up</a>
+        {% endif %}
+      {% endif %}
+      <a href="{{ url_for('request_quote') }}" class="btn btn-primary btn-sm desktop-only">Request a Quote</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg class="icon icon-menu"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-menu"/></svg>
+        <svg class="icon icon-close" style="display:none"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-close"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-scrim"></div>

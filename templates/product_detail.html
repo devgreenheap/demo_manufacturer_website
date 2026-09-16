@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% from "partials/product_card.html" import card %}
+{% block content %}
+
+<section class="page-hero" style="padding-bottom: 40px;">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="{{ url_for('home') }}">Home</a><span class="sep">/</span>
+      <a href="{{ url_for('products') }}">Products</a><span class="sep">/</span>
+      {{ product.name }}
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 48px;">
+  <div class="container">
+    <div class="pd-layout">
+      <div class="pd-media reveal-scale">
+        {% set photo = product_image(product.slug) %}
+        {% if photo %}
+          <img class="media-photo" src="{{ url_for('static', filename=photo) }}" alt="{{ product.name }}" loading="lazy">
+        {% else %}
+          <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-{{ product.illustration }}"/></svg>
+        {% endif %}
+        <span class="media-badge">
+          <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-{{ product.icon }}"/></svg>
+        </span>
+      </div>
+
+      <div class="reveal">
+        <span class="pd-cat">{{ product.category }}</span>
+        <h1 class="pd-title">{{ product.name }}</h1>
+        <p class="pd-desc">{{ product.description }}</p>
+        <a href="{{ url_for('request_quote', product=product.name) }}" class="btn btn-primary" style="margin-bottom: 32px;">
+          Request a Quote
+          <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-arrow"/></svg>
+        </a>
+
+        <div class="pd-block">
+          <h2>Overview</h2>
+          <p style="color: var(--muted);">{{ product.overview }}</p>
+        </div>
+
+        <div class="pd-block">
+          <h2>Applications</h2>
+          <ul class="pd-list">
+            {% for app in product.applications %}
+            <li>{{ app }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="pd-block">
+          <h2>Technical Specifications</h2>
+          <table class="spec-table">
+            <tbody>
+              {% for key, value in product.specifications.items() %}
+              <tr><td>{{ key }}</td><td>{{ value }}</td></tr>
+              {% endfor %}
+              <tr><td>Material</td><td>{{ product.material }}</td></tr>
+              <tr><td>Dimensions</td><td>{{ product.dimensions }}</td></tr>
+              <tr><td>Compatibility</td><td>{{ product.compatibility }}</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pd-block">
+          <h2>Manufacturing Options</h2>
+          <ul class="pd-list">
+            {% for option in product.manufacturing_options %}
+            <li>{{ option }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="pd-block">
+          <h2>Quality Information</h2>
+          <p style="color: var(--muted);">{{ product.quality_info }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if related_products %}
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">You May Also Need</span>
+      <h2>Related Products</h2>
+    </div>
+    <div class="grid grid-3">
+      {% for related in related_products %}
+        {{ card(related) }}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}
