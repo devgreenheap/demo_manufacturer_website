@@ -4,6 +4,7 @@
 <div class="auth-layout">
 
   <div class="auth-visual">
+    <canvas class="hero-canvas"></canvas>
     <div class="hero-grid"></div>
     <div class="auth-illus-wrap reveal">
       <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-factory"/></svg>
@@ -14,11 +15,11 @@
       <p>Log in to check the status of your quote requests and submit new ones faster.</p>
       <ul class="auth-bullets">
         <li>
-          <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-check"/></svg>
+          <span class="icon-wrap"><svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-check"/></svg></span>
           See every request you've submitted
         </li>
         <li>
-          <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-check"/></svg>
+          <span class="icon-wrap"><svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-check"/></svg></span>
           Your details are pre-filled automatically
         </li>
       </ul>

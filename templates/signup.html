@@ -4,6 +4,7 @@
 <div class="auth-layout">
 
   <div class="auth-visual">
+    <canvas class="hero-canvas"></canvas>
     <div class="hero-grid"></div>
     <div class="auth-illus-wrap reveal">
       <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-electronic"/></svg>
@@ -14,15 +15,15 @@
       <p>Create an account to manage your quote requests and speed up future enquiries.</p>
       <ul class="auth-bullets">
         <li>
-          <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-check"/></svg>
+          <span class="icon-wrap"><svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-check"/></svg></span>
           View the status of every quote request in one place
         </li>
         <li>
-          <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-check"/></svg>
+          <span class="icon-wrap"><svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-check"/></svg></span>
           Your details are pre-filled on future requests
         </li>
         <li>
-          <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-check"/></svg>
+          <span class="icon-wrap"><svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-check"/></svg></span>
           Free — no cost to create a business account
         </li>
       </ul>

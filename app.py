@@ -58,10 +58,23 @@ def industry_image(slug):
     return find_image("industries", slug)
 
 
+def gallery_images(subfolder, count=6):
+    """Numbered photo slots: static/images/<subfolder>/1.jpg, 2.jpg, ...
+    Returns only the slots that exist, so a partially-filled gallery still
+    renders the photos that are there."""
+    images = []
+    for i in range(1, count + 1):
+        img = find_image(subfolder, str(i))
+        if img:
+            images.append(img)
+    return images
+
+
 app.jinja_env.globals["product_image"] = product_image
 app.jinja_env.globals["site_image"] = site_image
 app.jinja_env.globals["service_image"] = service_image
 app.jinja_env.globals["industry_image"] = industry_image
+app.jinja_env.globals["gallery_images"] = gallery_images
 
 
 def login_required(view):

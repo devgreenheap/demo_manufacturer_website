@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initScrollReveal();
   initHeroCanvas();
   initFileDrop();
+  initSubnavSpy();
 });
 
 /* Navbar solidifies on scroll */
@@ -132,6 +133,47 @@ function initHeroCanvas() {
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     requestAnimationFrame(step);
   }
+}
+
+/* Highlight the active sub-nav tab as the user scrolls past each section */
+function initSubnavSpy() {
+  const links = document.querySelectorAll("[data-subnav]");
+  if (!links.length) return;
+
+  const sections = Array.from(links)
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
+  if (!sections.length) return;
+
+  function setActive(id) {
+    links.forEach((link) => {
+      link.classList.toggle("is-active", link.getAttribute("href") === `#${id}`);
+    });
+  }
+
+  if (!("IntersectionObserver" in window)) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    },
+    { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+
+  links.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const target = document.querySelector(link.getAttribute("href"));
+      if (!target) return;
+      e.preventDefault();
+      const subnav = document.querySelector(".page-subnav");
+      const offset = (subnav ? subnav.offsetHeight : 0) + 80;
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - offset, behavior: "smooth" });
+    });
+  });
 }
 
 /* Quote form: custom file-drop UI */

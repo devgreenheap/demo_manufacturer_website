@@ -27,9 +27,9 @@
       </div>
     </div>
 
-    <div class="trust-bar">
+    <div class="trust-bar reveal">
       {% for item in trust_indicators %}
-      <div class="trust-item">
+      <div class="trust-item" style="--i: {{ loop.index0 }};">
         <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-{{ item.icon }}"/></svg>
         {{ item.name }}
       </div>

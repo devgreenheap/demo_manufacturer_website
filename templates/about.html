@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<section class="page-hero">
+<section class="page-hero" style="padding-bottom: 0;">
   <div class="container">
     <div class="breadcrumb"><a href="{{ url_for('home') }}">Home</a><span class="sep">/</span>About</div>
     <h1>Building Reliable Electronics for a Connected World</h1>
@@ -9,7 +9,16 @@
   </div>
 </section>
 
-<section class="section">
+<nav class="page-subnav">
+  <div class="container">
+    <a href="#overview" data-subnav>Overview</a>
+    <a href="#why-gio" data-subnav>Why GIO</a>
+    <a href="#manufacturing" data-subnav>Manufacturing</a>
+    <a href="#quality" data-subnav>Quality</a>
+  </div>
+</nav>
+
+<section id="overview" class="section anchor-section">
   <div class="container two-col">
     <div class="reveal">
       <span class="eyebrow">About GIO Electronics</span>
@@ -21,9 +30,22 @@
       <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-quality"/></svg>
     </div>
   </div>
+
+  {% set gallery1 = gallery_images('about', 3) %}
+  {% if gallery1 %}
+  <div class="container">
+    <div class="photo-row stagger">
+      {% for photo in gallery1 %}
+      <div class="photo reveal-scale" style="--i: {{ loop.index0 }};">
+        <img src="{{ url_for('static', filename=photo) }}" alt="GIO Electronics facility" loading="lazy">
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
 </section>
 
-<section class="section section--alt">
+<section id="why-gio" class="section section--alt anchor-section">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Why Choose Us</span>
@@ -39,6 +61,53 @@
         <p>{{ item.description }}</p>
       </div>
       {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section id="manufacturing" class="section anchor-section">
+  <div class="container two-col">
+    <div class="visual-block reveal-scale">
+      <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-factory"/></svg>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">From Requirement to Delivery</span>
+      <h2 style="font-size: clamp(26px,3.4vw,32px); color: var(--navy);">How We Manufacture</h2>
+      <p style="color:var(--muted); font-size: 16.5px;">Every component moves through a structured process — requirement, design, prototype, production, testing, and delivery — built around consistency at every stage.</p>
+      <a href="{{ url_for('manufacturing') }}" class="btn btn-outline" style="margin-top: 8px;">
+        See Our Process
+        <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-arrow"/></svg>
+      </a>
+    </div>
+  </div>
+
+  {% set gallery2 = gallery_images('about', 6)[3:6] %}
+  {% if gallery2 %}
+  <div class="container">
+    <div class="photo-row stagger">
+      {% for photo in gallery2 %}
+      <div class="photo reveal-scale" style="--i: {{ loop.index0 }};">
+        <img src="{{ url_for('static', filename=photo) }}" alt="GIO Electronics manufacturing" loading="lazy">
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+<section id="quality" class="section section--navy anchor-section">
+  <div class="container two-col">
+    <div class="reveal">
+      <span class="eyebrow">Built Into Every Component</span>
+      <h2 style="font-size: clamp(26px,3.4vw,32px);">Quality at Every Stage</h2>
+      <p style="color:#c7d1cb; font-size: 16px;">From incoming material checks to final inspection before packaging, quality is checked throughout production — not just at the end.</p>
+      <a href="{{ url_for('quality') }}" class="btn btn-secondary" style="margin-top: 8px;">
+        See Our Quality Process
+        <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-arrow"/></svg>
+      </a>
+    </div>
+    <div class="visual-block reveal-scale">
+      <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-electronic"/></svg>
     </div>
   </div>
 </section>
