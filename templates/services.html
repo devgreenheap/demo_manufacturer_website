@@ -13,12 +13,20 @@
   <div class="container">
     <div class="grid grid-4 stagger">
       {% for service in services %}
-      <div class="card service-card reveal" style="--i: {{ loop.index0 }};">
-        <div class="icon-wrap">
-          <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-{{ service.icon }}"/></svg>
+      {% set photo = service_image(service.slug) %}
+      <div class="card service-card {{ 'has-photo' if photo }} reveal" style="--i: {{ loop.index0 }};">
+        {% if photo %}
+        <div class="service-media">
+          <img src="{{ url_for('static', filename=photo) }}" alt="{{ service.name }}" loading="lazy">
         </div>
-        <h3>{{ service.name }}</h3>
-        <p>{{ service.description }}</p>
+        {% endif %}
+        <div class="service-body">
+          <div class="icon-wrap">
+            <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-{{ service.icon }}"/></svg>
+          </div>
+          <h3>{{ service.name }}</h3>
+          <p>{{ service.description }}</p>
+        </div>
       </div>
       {% endfor %}
     </div>

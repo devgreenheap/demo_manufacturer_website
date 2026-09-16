@@ -349,48 +349,48 @@ PRODUCTS = [
 
 SERVICES = [
     {
-        "icon": "manufacture", "name": "Custom Component Manufacturing",
+        "icon": "manufacture", "slug": "custom-component-manufacturing", "name": "Custom Component Manufacturing",
         "description": "Manufacturing electronic components according to customer requirements and specifications.",
     },
     {
-        "icon": "pcb", "name": "PCB Assembly",
+        "icon": "pcb", "slug": "pcb-assembly", "name": "PCB Assembly",
         "description": "Professional assembly and testing of electronic components on printed circuit boards.",
     },
     {
-        "icon": "assembly", "name": "Electronic Product Assembly",
+        "icon": "assembly", "slug": "electronic-product-assembly", "name": "Electronic Product Assembly",
         "description": "Assembly of electronic parts and sub-components.",
     },
     {
-        "icon": "prototype", "name": "Prototype Development",
+        "icon": "prototype", "slug": "prototype-development", "name": "Prototype Development",
         "description": "Development of prototypes before mass production.",
     },
     {
-        "icon": "test", "name": "Component Testing & Quality Inspection",
+        "icon": "test", "slug": "component-testing-quality-inspection", "name": "Component Testing & Quality Inspection",
         "description": "Testing components for performance, reliability, consistency, and quality.",
     },
     {
-        "icon": "contract", "name": "Contract Manufacturing",
+        "icon": "contract", "slug": "contract-manufacturing", "name": "Contract Manufacturing",
         "description": "Manufacturing electronic products and components according to customer requirements.",
     },
     {
-        "icon": "design", "name": "Custom Design & Engineering",
+        "icon": "design", "slug": "custom-design-engineering", "name": "Custom Design & Engineering",
         "description": "Technical support and customized engineering solutions.",
     },
     {
-        "icon": "package", "name": "Packaging & Labelling",
+        "icon": "package", "slug": "packaging-labelling", "name": "Packaging & Labelling",
         "description": "Professional packaging, identification, labelling, and bulk-order preparation.",
     },
 ]
 
 INDUSTRIES = [
-    {"icon": "mobile", "name": "Mobile & Smart Devices"},
-    {"icon": "usb", "name": "Computers & IT Hardware"},
-    {"icon": "display", "name": "Consumer Electronics"},
-    {"icon": "switch", "name": "Home Appliances"},
-    {"icon": "chip", "name": "Industrial Electronics"},
-    {"icon": "connector", "name": "Automotive Electronics"},
-    {"icon": "signal", "name": "Telecommunications"},
-    {"icon": "iot", "name": "IoT & Connected Devices"},
+    {"icon": "mobile", "slug": "mobile-smart-devices", "name": "Mobile & Smart Devices"},
+    {"icon": "usb", "slug": "computers-it-hardware", "name": "Computers & IT Hardware"},
+    {"icon": "display", "slug": "consumer-electronics", "name": "Consumer Electronics"},
+    {"icon": "switch", "slug": "home-appliances", "name": "Home Appliances"},
+    {"icon": "chip", "slug": "industrial-electronics", "name": "Industrial Electronics"},
+    {"icon": "connector", "slug": "automotive-electronics", "name": "Automotive Electronics"},
+    {"icon": "signal", "slug": "telecommunications", "name": "Telecommunications"},
+    {"icon": "iot", "slug": "iot-connected-devices", "name": "IoT & Connected Devices"},
 ]
 
 PROCESS_STEPS = [

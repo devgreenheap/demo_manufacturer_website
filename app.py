@@ -50,8 +50,18 @@ def site_image(name):
     return find_image("site", name)
 
 
+def service_image(slug):
+    return find_image("services", slug)
+
+
+def industry_image(slug):
+    return find_image("industries", slug)
+
+
 app.jinja_env.globals["product_image"] = product_image
 app.jinja_env.globals["site_image"] = site_image
+app.jinja_env.globals["service_image"] = service_image
+app.jinja_env.globals["industry_image"] = industry_image
 
 
 def login_required(view):

@@ -13,11 +13,22 @@
   <div class="container">
     <div class="grid grid-4 stagger">
       {% for industry in industries %}
-      <div class="card industry-card reveal" style="--i: {{ loop.index0 }};">
+      {% set photo = industry_image(industry.slug) %}
+      <div class="card industry-card {{ 'has-photo' if photo }} reveal" style="--i: {{ loop.index0 }};">
+        {% if photo %}
+        <div class="industry-media">
+          <img src="{{ url_for('static', filename=photo) }}" alt="{{ industry.name }}" loading="lazy">
+          <span class="industry-media-badge">
+            <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-{{ industry.icon }}"/></svg>
+          </span>
+        </div>
+        <h3>{{ industry.name }}</h3>
+        {% else %}
         <div class="icon-wrap">
           <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-{{ industry.icon }}"/></svg>
         </div>
         <h3>{{ industry.name }}</h3>
+        {% endif %}
       </div>
       {% endfor %}
     </div>
