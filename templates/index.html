@@ -88,8 +88,13 @@
         <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-arrow"/></svg>
       </a>
     </div>
+    {% set photo = visual_image('home-manufacturing') %}
     <div class="visual-block reveal-scale">
-      <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-factory"/></svg>
+      {% if photo %}
+        <img class="media-photo" src="{{ url_for('static', filename=photo) }}" alt="GIO Electronics manufacturing">
+      {% else %}
+        <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-factory"/></svg>
+      {% endif %}
     </div>
   </div>
 </section>

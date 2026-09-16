@@ -27,8 +27,13 @@
 
 <section class="section section--alt">
   <div class="container two-col">
+    {% set photo = visual_image('quality-page') %}
     <div class="visual-block reveal-scale">
-      <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-quality"/></svg>
+      {% if photo %}
+        <img class="media-photo" src="{{ url_for('static', filename=photo) }}" alt="GIO Electronics quality inspection">
+      {% else %}
+        <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-quality"/></svg>
+      {% endif %}
     </div>
     <div class="reveal">
       <span class="eyebrow">Inspection at Every Stage</span>

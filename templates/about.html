@@ -12,6 +12,7 @@
 <nav class="page-subnav">
   <div class="container">
     <a href="#overview" data-subnav>Overview</a>
+    <a href="#history" data-subnav>Our History</a>
     <a href="#why-gio" data-subnav>Why GIO</a>
     <a href="#manufacturing" data-subnav>Manufacturing</a>
     <a href="#quality" data-subnav>Quality</a>
@@ -26,8 +27,13 @@
       <p style="color:var(--muted); font-size: 16.5px;">GIO Electronics is an electronics manufacturing and engineering company focused on delivering reliable components, assemblies, and customized manufacturing solutions for modern businesses.</p>
       <p style="color:var(--muted); font-size: 16.5px;">Our focus is simple: precision manufacturing, consistent quality, and dependable customer support.</p>
     </div>
+    {% set overview_photo = visual_image('about-overview') %}
     <div class="visual-block reveal-scale">
-      <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-quality"/></svg>
+      {% if overview_photo %}
+        <img class="media-photo" src="{{ url_for('static', filename=overview_photo) }}" alt="GIO Electronics facility">
+      {% else %}
+        <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-quality"/></svg>
+      {% endif %}
     </div>
   </div>
 
@@ -43,6 +49,27 @@
     </div>
   </div>
   {% endif %}
+</section>
+
+<section id="history" class="section section--alt anchor-section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Journey</span>
+      <h2>Our History</h2>
+      <p>An illustrative overview of how GIO Electronics has grown over the years.</p>
+    </div>
+    <div class="timeline">
+      {% for milestone in history %}
+      <div class="timeline-step">
+        <div class="timeline-num timeline-num--year">{{ milestone.year }}</div>
+        <div class="timeline-content">
+          <h3>{{ milestone.title }}</h3>
+          <p>{{ milestone.description }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 </section>
 
 <section id="why-gio" class="section section--alt anchor-section">
@@ -67,8 +94,13 @@
 
 <section id="manufacturing" class="section anchor-section">
   <div class="container two-col">
+    {% set manufacturing_photo = visual_image('about-manufacturing') %}
     <div class="visual-block reveal-scale">
-      <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-factory"/></svg>
+      {% if manufacturing_photo %}
+        <img class="media-photo" src="{{ url_for('static', filename=manufacturing_photo) }}" alt="GIO Electronics manufacturing">
+      {% else %}
+        <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-factory"/></svg>
+      {% endif %}
     </div>
     <div class="reveal">
       <span class="eyebrow">From Requirement to Delivery</span>
@@ -106,8 +138,13 @@
         <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-arrow"/></svg>
       </a>
     </div>
+    {% set quality_photo = visual_image('about-quality') %}
     <div class="visual-block reveal-scale">
-      <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-electronic"/></svg>
+      {% if quality_photo %}
+        <img class="media-photo" src="{{ url_for('static', filename=quality_photo) }}" alt="GIO Electronics quality inspection">
+      {% else %}
+        <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-electronic"/></svg>
+      {% endif %}
     </div>
   </div>
 </section>

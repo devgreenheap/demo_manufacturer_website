@@ -393,6 +393,17 @@ INDUSTRIES = [
     {"icon": "iot", "slug": "iot-connected-devices", "name": "IoT & Connected Devices"},
 ]
 
+# Illustrative placeholder timeline for a fictional company — not real
+# history, and not to be treated as factual company data.
+HISTORY = [
+    {"year": "2010", "title": "GIO Electronics Founded", "description": "Started as a small connector and terminal manufacturing workshop serving local electronics assemblers."},
+    {"year": "2014", "title": "Expanded Into Computing Components", "description": "Added laptop and desktop connector lines as demand grew from computing hardware manufacturers."},
+    {"year": "2017", "title": "PCB Assembly & Prototyping Added", "description": "Introduced in-house PCB assembly and prototype development to support faster product development cycles."},
+    {"year": "2020", "title": "Appliance & Industrial Components", "description": "Broadened the product range into home appliance and general industrial electronic components."},
+    {"year": "2023", "title": "Custom Engineering Support Launched", "description": "Began offering dedicated custom design and engineering services for B2B manufacturing partners."},
+    {"year": "2026", "title": "Continued Manufacturing Growth", "description": "Ongoing investment in production capacity and quality processes to support a growing customer base."},
+]
+
 PROCESS_STEPS = [
     {"name": "Requirement", "description": "Understanding customer specifications, application needs, and technical requirements."},
     {"name": "Design & Engineering", "description": "Engineering the component or assembly design to meet functional and manufacturing requirements."},

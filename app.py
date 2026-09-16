@@ -70,11 +70,18 @@ def gallery_images(subfolder, count=6):
     return images
 
 
+def visual_image(slug):
+    """Real photo for a page's illustration box, e.g.
+    static/images/visuals/about-overview.(jpg|jpeg|png|webp|avif)."""
+    return find_image("visuals", slug)
+
+
 app.jinja_env.globals["product_image"] = product_image
 app.jinja_env.globals["site_image"] = site_image
 app.jinja_env.globals["service_image"] = service_image
 app.jinja_env.globals["industry_image"] = industry_image
 app.jinja_env.globals["gallery_images"] = gallery_images
+app.jinja_env.globals["visual_image"] = visual_image
 
 
 def login_required(view):
@@ -116,6 +123,7 @@ def about():
         title="About Us | GIO Electronics",
         description="Learn about GIO Electronics, an electronics manufacturing and engineering company delivering reliable components and custom manufacturing solutions.",
         why_gio=data.WHY_GIO,
+        history=data.HISTORY,
     )
 
 
