@@ -438,7 +438,7 @@ TRUST_INDICATORS = [
 COMPANY_INFO = {
     "name": "GIO Electronics",
     "tagline": "Engineering Components for a Connected World.",
-    "phone": "+91 XXXXX XXXXX",  # placeholder
+    "phone": "+91 98765 43210",  # placeholder
     "email": "info@gioelectronics.com",  # placeholder
     "address": "Chennai, Tamil Nadu, India",  # placeholder
 }

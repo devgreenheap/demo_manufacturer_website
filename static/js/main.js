@@ -23,18 +23,12 @@ function initMobileMenu() {
   const scrim = document.querySelector(".nav-scrim");
   if (!toggle || !links) return;
 
-  const openIcon = toggle.querySelector(".icon-menu");
-  const closeIcon = toggle.querySelector(".icon-close");
-
   function setOpen(isOpen) {
     links.classList.toggle("is-open", isOpen);
     if (scrim) scrim.classList.toggle("is-open", isOpen);
+    toggle.classList.toggle("is-open", isOpen);
     toggle.setAttribute("aria-expanded", String(isOpen));
     document.body.style.overflow = isOpen ? "hidden" : "";
-    if (openIcon && closeIcon) {
-      openIcon.style.display = isOpen ? "none" : "";
-      closeIcon.style.display = isOpen ? "" : "none";
-    }
   }
 
   toggle.addEventListener("click", () => setOpen(!links.classList.contains("is-open")));

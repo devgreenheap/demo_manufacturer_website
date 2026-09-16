@@ -39,8 +39,7 @@
       {% endif %}
       <a href="{{ url_for('request_quote') }}" class="btn btn-primary btn-sm desktop-only">Request a Quote</a>
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-        <svg class="icon icon-menu"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-menu"/></svg>
-        <svg class="icon icon-close" style="display:none"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-close"/></svg>
+        <span class="hamburger"><span></span><span></span><span></span></span>
       </button>
     </div>
   </div>
