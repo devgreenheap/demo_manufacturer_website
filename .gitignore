@@ -4,3 +4,4 @@ static/uploads/
 database/enquiries.json
 netlify_build/
 server.log
+.claude/
