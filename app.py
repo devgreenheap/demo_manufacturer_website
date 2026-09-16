@@ -17,7 +17,7 @@ app.config.from_object(Config)
 
 os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 
-PRODUCT_IMAGE_DIR = os.path.join(app.root_path, "static", "images", "products")
+IMAGES_DIR = os.path.join(app.root_path, "static", "images")
 IMAGE_EXTENSIONS = (".jpg", ".jpeg", ".png", ".webp", ".avif")
 
 
@@ -28,18 +28,30 @@ def allowed_file(filename):
     )
 
 
-def product_image(slug):
-    """Return the static path of a real product photo if one has been
-    dropped into static/images/products/<slug>.(jpg|jpeg|png|webp), else None.
+def find_image(subfolder, name):
+    """Return the static path of a real photo if one has been dropped into
+    static/images/<subfolder>/<name>.(jpg|jpeg|png|webp|avif), else None.
     Checked on every render so newly added images show up without a restart.
     """
+    folder = os.path.join(IMAGES_DIR, subfolder)
     for ext in IMAGE_EXTENSIONS:
-        if os.path.exists(os.path.join(PRODUCT_IMAGE_DIR, slug + ext)):
-            return f"images/products/{slug}{ext}"
+        if os.path.exists(os.path.join(folder, name + ext)):
+            return f"images/{subfolder}/{name}{ext}"
     return None
 
 
+def product_image(slug):
+    return find_image("products", slug)
+
+
+def site_image(name):
+    """Site-wide images, e.g. the homepage hero background at
+    static/images/site/hero.(jpg|jpeg|png|webp|avif)."""
+    return find_image("site", name)
+
+
 app.jinja_env.globals["product_image"] = product_image
+app.jinja_env.globals["site_image"] = site_image
 
 
 def login_required(view):

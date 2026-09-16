@@ -2,7 +2,16 @@
 {% from "partials/product_card.html" import card %}
 {% block content %}
 
-<section class="hero">
+{% set hero_photo = site_image('hero') %}
+{% set hero_video_id = '5EYnkaKs2UQ' %}
+<section class="hero hero--video"{% if hero_photo %} style="--hero-bg: url('{{ url_for('static', filename=hero_photo) }}');"{% endif %}>
+  <div class="hero-video" aria-hidden="true">
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/{{ hero_video_id }}?autoplay=1&mute=1&loop=1&playlist={{ hero_video_id }}&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&playsinline=1"
+      title="" frameborder="0" allow="autoplay; encrypted-media" tabindex="-1">
+    </iframe>
+  </div>
+  <div class="hero-overlay"></div>
   <canvas class="hero-canvas"></canvas>
   <div class="hero-grid"></div>
   <div class="container">

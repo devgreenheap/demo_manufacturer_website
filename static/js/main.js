@@ -105,7 +105,7 @@ function initHeroCanvas() {
         const a = nodes[i], b = nodes[j];
         const dist = Math.hypot(a.x - b.x, a.y - b.y);
         if (dist < LINK_DIST) {
-          ctx.strokeStyle = `rgba(20, 121, 255, ${0.16 * (1 - dist / LINK_DIST)})`;
+          ctx.strokeStyle = `rgba(15, 122, 92, ${0.2 * (1 - dist / LINK_DIST)})`;
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
@@ -118,8 +118,8 @@ function initHeroCanvas() {
     nodes.forEach((n) => {
       ctx.beginPath();
       ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(255, 106, 0, 0.7)";
-      ctx.shadowColor = "rgba(255, 106, 0, 0.8)";
+      ctx.fillStyle = "rgba(217, 119, 6, 0.75)";
+      ctx.shadowColor = "rgba(217, 119, 6, 0.8)";
       ctx.shadowBlur = 6;
       ctx.fill();
       ctx.shadowBlur = 0;
