@@ -174,7 +174,9 @@ button { font-family: inherit; cursor: pointer; }
   padding: 190px 0 120px;
   overflow: hidden;
 }
-.hero--video { background-image: none; }
+/* .hero--video intentionally keeps the standard background-image chain
+   (including --hero-bg) as a fallback behind the video iframe, in case the
+   video is blocked or slow to load. */
 .hero-video {
   position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
 }
