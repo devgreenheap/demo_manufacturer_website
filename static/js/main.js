@@ -1,4 +1,31 @@
 // GIO Electronics — lightweight vanilla JS (no external libraries)
+
+/* Top loading bar: fills while the page loads, completes on window "load",
+   and restarts on internal link clicks so the next page feels instant. */
+(function initPageLoader() {
+  const bar = document.getElementById("page-loader");
+  if (!bar) return;
+
+  requestAnimationFrame(() => bar.classList.add("is-loading"));
+
+  window.addEventListener("load", () => {
+    bar.classList.remove("is-loading");
+    bar.classList.add("is-done");
+  });
+
+  document.addEventListener("click", (e) => {
+    const link = e.target.closest("a[href]");
+    if (!link) return;
+    const isInternal = link.origin === window.location.origin;
+    const isNewTab = link.target === "_blank" || e.metaKey || e.ctrlKey;
+    const isAnchor = link.getAttribute("href").startsWith("#");
+    if (isInternal && !isNewTab && !isAnchor) {
+      bar.classList.remove("is-done");
+      bar.classList.add("is-loading");
+    }
+  });
+})();
+
 document.addEventListener("DOMContentLoaded", function () {
   initNavbar();
   initMobileMenu();
@@ -100,7 +127,7 @@ function initHeroCanvas() {
         const a = nodes[i], b = nodes[j];
         const dist = Math.hypot(a.x - b.x, a.y - b.y);
         if (dist < LINK_DIST) {
-          ctx.strokeStyle = `rgba(15, 122, 92, ${0.2 * (1 - dist / LINK_DIST)})`;
+          ctx.strokeStyle = `rgba(30, 64, 175, ${0.2 * (1 - dist / LINK_DIST)})`;
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
@@ -113,8 +140,8 @@ function initHeroCanvas() {
     nodes.forEach((n) => {
       ctx.beginPath();
       ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(217, 119, 6, 0.75)";
-      ctx.shadowColor = "rgba(217, 119, 6, 0.8)";
+      ctx.fillStyle = "rgba(30, 64, 175, 0.75)";
+      ctx.shadowColor = "rgba(30, 64, 175, 0.8)";
       ctx.shadowBlur = 6;
       ctx.fill();
       ctx.shadowBlur = 0;

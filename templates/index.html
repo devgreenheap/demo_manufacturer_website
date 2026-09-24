@@ -14,9 +14,27 @@
   <div class="hero-overlay"></div>
   <canvas class="hero-canvas"></canvas>
   <div class="hero-grid"></div>
+
+  <div class="hero-badges" aria-hidden="true">
+    <div class="hero-badge hero-badge--1 reveal-scale">
+      <span class="hero-badge-icon"><svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-quality"/></svg></span>
+      <div>
+        <strong>Quality Tested</strong>
+        <span>Structured Inspection Process</span>
+      </div>
+    </div>
+    <div class="hero-badge hero-badge--2 reveal-scale">
+      <span class="hero-badge-icon"><svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-custom"/></svg></span>
+      <div>
+        <strong>Custom Engineering</strong>
+        <span>Tailored to Your Requirement</span>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
     <div class="hero-inner">
-      <h1>Engineering Components for a Connected World.</h1>
+      <h1>Engineering Components<br><span class="hero-accent-text">for a Connected World.</span></h1>
       <p>GIO Electronics delivers precision-engineered electronic components and manufacturing solutions designed for modern devices, industrial applications, and connected technologies.</p>
       <div class="hero-actions">
         <a href="{{ url_for('products') }}" class="btn btn-primary">
