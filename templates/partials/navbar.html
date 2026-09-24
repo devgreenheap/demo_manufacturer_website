@@ -1,9 +1,6 @@
 <nav class="navbar">
   <div class="container">
-    <a href="{{ url_for('home') }}" class="brand">
-      <span class="brand-mark">GE</span>
-      GIO Electronics
-    </a>
+    {% include "partials/brand.html" %}
 
     <ul class="nav-links">
       <li><a href="{{ url_for('home') }}" class="{{ 'is-active' if request.endpoint == 'home' }}">Home</a></li>
