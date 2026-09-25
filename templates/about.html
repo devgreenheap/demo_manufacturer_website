@@ -38,12 +38,14 @@
   </div>
 
   {% set gallery1 = gallery_images('about', 3) %}
+  {% set gallery1_captions = ["Component & Prototyping Kits", "Precision Electronic Components", "Networking & Connectivity Hardware"] %}
   {% if gallery1 %}
   <div class="container">
     <div class="photo-row stagger">
       {% for photo in gallery1 %}
       <div class="photo reveal-scale" style="--i: {{ loop.index0 }};">
-        <img src="{{ url_for('static', filename=photo) }}" alt="GIO Electronics facility" loading="lazy">
+        <img src="{{ url_for('static', filename=photo) }}" alt="{{ gallery1_captions[loop.index0] }}" loading="lazy">
+        <span class="photo-caption">{{ gallery1_captions[loop.index0] }}</span>
       </div>
       {% endfor %}
     </div>
@@ -80,7 +82,7 @@
     </div>
     <div class="grid grid-3 stagger">
       {% for item in why_gio %}
-      <div class="card why-card reveal" style="--i: {{ loop.index0 }};">
+      <div class="card why-card tilt-card reveal" style="--i: {{ loop.index0 }};">
         <div class="icon-wrap">
           <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-{{ item.icon }}"/></svg>
         </div>
@@ -112,19 +114,6 @@
       </a>
     </div>
   </div>
-
-  {% set gallery2 = gallery_images('about', 6)[3:6] %}
-  {% if gallery2 %}
-  <div class="container">
-    <div class="photo-row stagger">
-      {% for photo in gallery2 %}
-      <div class="photo reveal-scale" style="--i: {{ loop.index0 }};">
-        <img src="{{ url_for('static', filename=photo) }}" alt="GIO Electronics manufacturing" loading="lazy">
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-  {% endif %}
 </section>
 
 <section id="quality" class="section section--navy anchor-section">
@@ -132,7 +121,7 @@
     <div class="reveal">
       <span class="eyebrow">Built Into Every Component</span>
       <h2 style="font-size: clamp(26px,3.4vw,32px);">Quality at Every Stage</h2>
-      <p style="color:#c7d1cb; font-size: 16px;">From incoming material checks to final inspection before packaging, quality is checked throughout production — not just at the end.</p>
+      <p style="color:#000; font-size: 16px;">From incoming material checks to final inspection before packaging, quality is checked throughout production — not just at the end.</p>
       <a href="{{ url_for('quality') }}" class="btn btn-secondary" style="margin-top: 8px;">
         See Our Quality Process
         <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-arrow"/></svg>

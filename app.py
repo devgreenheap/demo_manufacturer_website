@@ -1,16 +1,11 @@
 import os
-import re
-from functools import wraps
 
 from flask import Flask, render_template, request, redirect, url_for, flash, session
-from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 
 from config import Config
 import data
 import db
-
-EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -84,22 +79,11 @@ app.jinja_env.globals["gallery_images"] = gallery_images
 app.jinja_env.globals["visual_image"] = visual_image
 
 
-def login_required(view):
-    @wraps(view)
-    def wrapped(*args, **kwargs):
-        if not session.get("customer_id"):
-            flash("Please log in to continue.", "error")
-            return redirect(url_for("login", next=request.path))
-        return view(*args, **kwargs)
-    return wrapped
-
-
 @app.context_processor
 def inject_globals():
     return {
         "company": data.COMPANY_INFO,
         "nav_categories": data.CATEGORIES,
-        "current_customer_name": None if Config.STATIC_BUILD else session.get("customer_name"),
         "static_build": Config.STATIC_BUILD,
     }
 
@@ -206,121 +190,6 @@ def contact():
         "contact.html",
         title="Contact Us | GIO Electronics",
         description="Get in touch with GIO Electronics for enquiries about electronic component manufacturing and engineering services.",
-    )
-
-
-@app.route("/signup", methods=["GET", "POST"])
-def signup():
-    if session.get("customer_id"):
-        return redirect(url_for("account"))
-
-    if request.method == "POST":
-        full_name = request.form.get("full_name", "").strip()
-        company_name = request.form.get("company_name", "").strip()
-        email = request.form.get("email", "").strip().lower()
-        phone = request.form.get("phone", "").strip()
-        password = request.form.get("password", "")
-        confirm_password = request.form.get("confirm_password", "")
-
-        errors = []
-        if not full_name:
-            errors.append("Full name is required.")
-        if not company_name:
-            errors.append("Company name is required.")
-        if not EMAIL_RE.match(email):
-            errors.append("Please enter a valid email address.")
-        if len(password) < 8:
-            errors.append("Password must be at least 8 characters.")
-        if password != confirm_password:
-            errors.append("Passwords do not match.")
-
-        if not errors:
-            new_id = db.create_customer({
-                "full_name": full_name,
-                "company_name": company_name,
-                "email": email,
-                "phone": phone,
-                "password_hash": generate_password_hash(password),
-            })
-            if new_id is None:
-                errors.append("An account with this email already exists. Try logging in instead.")
-
-        if errors:
-            for err in errors:
-                flash(err, "error")
-            return render_template(
-                "signup.html",
-                title="Create an Account | GIO Electronics",
-                description="Create a GIO Electronics account to track your quote requests.",
-                form_data=request.form,
-            ), 400
-
-        session["customer_id"] = new_id
-        session["customer_name"] = full_name
-        flash("Account created. Welcome to GIO Electronics.", "success")
-        return redirect(url_for("account"))
-
-    return render_template(
-        "signup.html",
-        title="Create an Account | GIO Electronics",
-        description="Create a GIO Electronics account to track your quote requests.",
-        form_data={},
-    )
-
-
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    if session.get("customer_id"):
-        return redirect(url_for("account"))
-
-    if request.method == "POST":
-        email = request.form.get("email", "").strip().lower()
-        password = request.form.get("password", "")
-        next_url = request.form.get("next") or url_for("account")
-
-        customer = db.get_customer_by_email(email)
-        if not customer or not check_password_hash(customer["password_hash"], password):
-            flash("Incorrect email or password.", "error")
-            return render_template(
-                "login.html",
-                title="Log In | GIO Electronics",
-                description="Log in to your GIO Electronics account.",
-                form_data=request.form,
-                next=next_url,
-            ), 400
-
-        session["customer_id"] = customer["id"]
-        session["customer_name"] = customer["full_name"]
-        flash(f"Welcome back, {customer['full_name']}.", "success")
-        return redirect(next_url)
-
-    return render_template(
-        "login.html",
-        title="Log In | GIO Electronics",
-        description="Log in to your GIO Electronics account.",
-        form_data={},
-        next=request.args.get("next", ""),
-    )
-
-
-@app.route("/logout", methods=["POST"])
-def logout():
-    session.clear()
-    flash("You have been logged out.", "success")
-    return redirect(url_for("home"))
-
-
-@app.route("/account")
-@login_required
-def account():
-    customer = db.get_customer_by_id(session["customer_id"])
-    enquiries = db.list_enquiries_for_customer(session["customer_id"])
-    return render_template(
-        "account.html",
-        title="My Account | GIO Electronics",
-        description="View your GIO Electronics account and submitted quote requests.",
-        customer=customer,
-        enquiries=enquiries,
     )
 
 

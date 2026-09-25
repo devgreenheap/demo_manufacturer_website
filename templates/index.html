@@ -83,10 +83,12 @@
       <span class="eyebrow">Why GIO Electronics</span>
       <h2>A Manufacturing Partner You Can Rely On</h2>
     </div>
-    <div class="grid grid-3">
+    <div class="grid grid-3 stagger">
       {% for item in why_gio %}
-      <div class="trust-card reveal">
-        <svg class="icon" style="width:32px;height:32px;color:var(--orange);margin-bottom:14px;"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-{{ item.icon }}"/></svg>
+      <div class="card why-card tilt-card reveal" style="--i: {{ loop.index0 }};">
+        <div class="icon-wrap">
+          <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-{{ item.icon }}"/></svg>
+        </div>
         <h3>{{ item.name }}</h3>
         <p>{{ item.description }}</p>
       </div>

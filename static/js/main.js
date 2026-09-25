@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initHeroCanvas();
   initFileDrop();
   initSubnavSpy();
+  initTiltCards();
 });
 
 /* Navbar solidifies on scroll */
@@ -199,6 +200,36 @@ function initSubnavSpy() {
       const subnav = document.querySelector(".page-subnav");
       const offset = (subnav ? subnav.offsetHeight : 0) + 80;
       window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - offset, behavior: "smooth" });
+    });
+  });
+}
+
+/* 3D tilt-on-hover for cards: follows the cursor position within the card
+   and tilts it in 3D space. Skipped on touch devices, which have no
+   meaningful pointer position to track. */
+function initTiltCards() {
+  const cards = document.querySelectorAll(".tilt-card");
+  if (!cards.length) return;
+  if (window.matchMedia("(hover: none)").matches) return;
+
+  const MAX_TILT = 9;
+
+  cards.forEach((card) => {
+    card.style.transformStyle = "preserve-3d";
+
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * MAX_TILT;
+      const rotateX = -((y - rect.height / 2) / (rect.height / 2)) * MAX_TILT;
+      card.style.transition = "transform 0.1s ease-out";
+      card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px) scale(1.02)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transition = "transform 0.5s var(--ease-pop)";
+      card.style.transform = "";
     });
   });
 }
