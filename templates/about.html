@@ -26,11 +26,22 @@
       <h2 style="font-size: clamp(26px,3.4vw,32px); color: var(--navy);">Who We Are</h2>
       <p style="color:var(--muted); font-size: 16.5px;">GIO Electronics is an electronics manufacturing and engineering company focused on delivering reliable components, assemblies, and customized manufacturing solutions for modern businesses.</p>
       <p style="color:var(--muted); font-size: 16.5px;">Our focus is simple: precision manufacturing, consistent quality, and dependable customer support.</p>
+      <blockquote class="director-quote">
+        <p>"Every component we ship carries our name on it. That's why precision and dependability aren't optional at GIO Electronics — they're the standard we hold ourselves to, every single day."</p>
+        <footer>
+          <strong>Indhu Krishnan</strong>
+          <span>Director, GIO Electronics</span>
+        </footer>
+      </blockquote>
     </div>
     {% set overview_photo = visual_image('about-overview') %}
     <div class="visual-block reveal-scale">
       {% if overview_photo %}
-        <img class="media-photo" src="{{ url_for('static', filename=overview_photo) }}" alt="GIO Electronics facility">
+        <img class="media-photo" src="{{ url_for('static', filename=overview_photo) }}" alt="Indhu Krishnan, Director of GIO Electronics">
+        <div class="visual-block-badge">
+          <strong>Indhu Krishnan</strong>
+          <span>Director, GIO Electronics</span>
+        </div>
       {% else %}
         <svg class="illus"><use href="{{ url_for('static', filename='icons/illustrations.svg') }}#illus-quality"/></svg>
       {% endif %}

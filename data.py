@@ -451,7 +451,7 @@ COMPANY_INFO = {
     "tagline": "Engineering Components for a Connected World.",
     "phone": "+91 98765 43210",  # placeholder
     "email": "info@gioelectronics.com",  # placeholder
-    "address": "Chennai, Tamil Nadu, India",  # placeholder
+    "address": "Guindy Industrial Estate, Chennai, Tamil Nadu 600032, India",  # placeholder
 }
 
 

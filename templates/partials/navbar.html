@@ -5,7 +5,25 @@
     <ul class="nav-links">
       <li><a href="{{ url_for('home') }}" class="{{ 'is-active' if request.endpoint == 'home' }}">Home</a></li>
       <li><a href="{{ url_for('about') }}" class="{{ 'is-active' if request.endpoint == 'about' }}">About</a></li>
-      <li><a href="{{ url_for('products') }}" class="{{ 'is-active' if request.endpoint in ['products', 'product_detail'] }}">Products</a></li>
+      <li class="nav-dropdown">
+        <a href="{{ url_for('products') }}" class="nav-dropdown-trigger {{ 'is-active' if request.endpoint in ['products', 'product_detail'] }}">
+          Products
+          <span class="nav-caret-btn" aria-hidden="true">
+            <svg class="icon nav-caret"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-arrow"/></svg>
+          </span>
+        </a>
+        <div class="nav-dropdown-panel">
+          {% for cat in nav_categories %}
+          <a href="{{ url_for('products', category=cat.slug) }}" class="nav-dropdown-item">
+            <span class="icon-wrap"><svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-{{ cat.icon }}"/></svg></span>
+            <span>
+              <strong>{{ cat.name }}</strong>
+              <small>{{ cat.blurb }}</small>
+            </span>
+          </a>
+          {% endfor %}
+        </div>
+      </li>
       <li><a href="{{ url_for('services') }}" class="{{ 'is-active' if request.endpoint == 'services' }}">Services</a></li>
       <li><a href="{{ url_for('manufacturing') }}" class="{{ 'is-active' if request.endpoint == 'manufacturing' }}">Manufacturing</a></li>
       <li><a href="{{ url_for('industries') }}" class="{{ 'is-active' if request.endpoint == 'industries' }}">Industries</a></li>

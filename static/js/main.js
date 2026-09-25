@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initFileDrop();
   initSubnavSpy();
   initTiltCards();
+  initNavDropdown();
 });
 
 /* Navbar solidifies on scroll */
@@ -231,6 +232,25 @@ function initTiltCards() {
       card.style.transition = "transform 0.5s var(--ease-pop)";
       card.style.transform = "";
     });
+  });
+}
+
+/* Products nav dropdown: hover-reveal on desktop, tap-to-expand on mobile
+   (the caret toggles the panel without following the link; the link text
+   itself still navigates to the Products page). */
+function initNavDropdown() {
+  const dropdown = document.querySelector(".nav-dropdown");
+  const caret = document.querySelector(".nav-caret-btn");
+  if (!dropdown || !caret) return;
+
+  caret.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dropdown.classList.toggle("is-open");
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!dropdown.contains(e.target)) dropdown.classList.remove("is-open");
   });
 }
 

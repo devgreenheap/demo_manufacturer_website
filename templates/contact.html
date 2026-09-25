@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 
-<section class="page-hero">
+{% set hero_bg = site_image('contact-band') %}
+<section class="page-hero page-hero--photo"{% if hero_bg %} style="background-image: url('{{ url_for('static', filename=hero_bg) }}');"{% endif %}>
+  <div class="page-hero-overlay"></div>
   <div class="container">
     <div class="breadcrumb"><a href="{{ url_for('home') }}">Home</a><span class="sep">/</span>Contact</div>
     <h1>Get in Touch</h1>
@@ -11,50 +13,45 @@
 
 <section class="section">
   <div class="container">
-    <div class="contact-card reveal">
-      <div class="contact-card-map">
+    <div class="section-head reveal">
+      <span class="eyebrow">Visit Us</span>
+      <h2>Find Us Here</h2>
+    </div>
+    <div class="find-us-layout">
+      <div class="find-us-info reveal">
+        <div class="find-us-block">
+          <span class="find-us-label"><svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-location"/></svg>Office</span>
+          <h3>{{ company.name }}</h3>
+          <p>{{ company.address }}</p>
+        </div>
+        <div class="find-us-block">
+          <span class="find-us-label"><svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-phone"/></svg>Phone</span>
+          <p>{{ company.phone }}</p>
+        </div>
+        <div class="find-us-block">
+          <span class="find-us-label"><svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-mail"/></svg>Email</span>
+          <p>{{ company.email }}</p>
+        </div>
+      </div>
+      <div class="map-card reveal-scale">
         <iframe
-          src="https://www.google.com/maps?q={{ company.address | urlencode }}&output=embed"
+          src="https://www.google.com/maps?q={{ company.address | urlencode }}&z=15&output=embed"
           width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
           title="GIO Electronics location (placeholder address)">
         </iframe>
       </div>
-      <div class="contact-card-info">
-        <span class="eyebrow">Contact Information</span>
-        <h2 style="font-size: 24px; color: var(--navy);">GIO Electronics</h2>
-        <p style="color: var(--muted); margin-bottom: 24px;">Electronic Components Manufacturing &amp; Engineering Solutions</p>
-
-        <div class="contact-item">
-          <div class="icon-wrap"><svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-phone"/></svg></div>
-          <div>
-            <h3>Phone</h3>
-            <p>{{ company.phone }}</p>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="icon-wrap"><svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-mail"/></svg></div>
-          <div>
-            <h3>Email</h3>
-            <p>{{ company.email }}</p>
-          </div>
-        </div>
-        <div class="contact-item" style="border-bottom: none;">
-          <div class="icon-wrap"><svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-location"/></svg></div>
-          <div>
-            <h3>Address</h3>
-            <p>{{ company.address }}</p>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
 
-<section class="section section--alt" style="padding-top: 0;">
-  <div class="container" style="max-width: 620px;">
-    <div class="form-card reveal">
-      <h2 style="font-size: 22px; color: var(--navy); margin-bottom: 22px;">Send Us a Message</h2>
+{% set touch_bg = site_image('get-in-touch-band') %}
+<section class="get-in-touch"{% if touch_bg %} style="background-image: url('{{ url_for('static', filename=touch_bg) }}');"{% endif %}>
+  <div class="get-in-touch-overlay"></div>
+  <div class="container get-in-touch-layout">
+    <div class="get-in-touch-form reveal-scale">
+      <span class="eyebrow">Contact Us</span>
+      <h2>Get in Touch with Us</h2>
       <form action="{{ url_for('request_quote') }}" method="get">
         <div class="field">
           <label>Full Name <span class="req">*</span></label>
