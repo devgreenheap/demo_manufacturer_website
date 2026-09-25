@@ -22,6 +22,10 @@
             </span>
           </a>
           {% endfor %}
+          <a href="{{ url_for('products') }}" class="nav-dropdown-footer">
+            View All Products
+            <svg class="icon"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-arrow"/></svg>
+          </a>
         </div>
       </li>
       <li><a href="{{ url_for('services') }}" class="{{ 'is-active' if request.endpoint == 'services' }}">Services</a></li>
@@ -32,7 +36,13 @@
     </ul>
 
     <div class="nav-actions">
-      <a href="{{ url_for('request_quote') }}" class="btn btn-primary btn-sm desktop-only">Request a Quote</a>
+      <a href="{{ url_for('request_quote') }}" class="btn btn-primary btn-cta desktop-only">
+        <span>Request a Quote</span>
+        <span class="btn-cta-icon">
+          <svg class="icon btn-cta-icon-a"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-arrow"/></svg>
+          <svg class="icon btn-cta-icon-b"><use href="{{ url_for('static', filename='icons/sprite.svg') }}#icon-arrow"/></svg>
+        </span>
+      </a>
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
         <span class="hamburger"><span></span><span></span><span></span></span>
       </button>

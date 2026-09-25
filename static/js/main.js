@@ -35,13 +35,24 @@ document.addEventListener("DOMContentLoaded", function () {
   initSubnavSpy();
   initTiltCards();
   initNavDropdown();
+  initNavPillIndicator();
 });
 
-/* Navbar solidifies on scroll */
+/* Navbar solidifies on scroll, and the logo/CTA icons swap in and out
+   depending on scroll direction (down = "out", up = "in"). */
 function initNavbar() {
   const nav = document.querySelector(".navbar");
   if (!nav) return;
-  const onScroll = () => nav.classList.toggle("is-scrolled", window.scrollY > 20);
+  let lastY = window.scrollY;
+  const onScroll = () => {
+    const y = window.scrollY;
+    nav.classList.toggle("is-scrolled", y > 20);
+    if (Math.abs(y - lastY) > 4) {
+      nav.classList.toggle("scroll-down", y > lastY && y > 20);
+      nav.classList.toggle("scroll-up", y <= lastY || y <= 20);
+      lastY = y;
+    }
+  };
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 }
@@ -233,6 +244,39 @@ function initTiltCards() {
       card.style.transform = "";
     });
   });
+}
+
+/* Floating pill nav: a sliding highlight tracks the hovered link, settling
+   back on the active page's link when the cursor leaves the menu. */
+function initNavPillIndicator() {
+  const nav = document.querySelector(".nav-links");
+  if (!nav) return;
+  const links = Array.from(nav.querySelectorAll(":scope > li > a"));
+  if (!links.length) return;
+
+  function moveTo(link) {
+    if (!link) {
+      nav.classList.remove("has-indicator");
+      return;
+    }
+    const navRect = nav.getBoundingClientRect();
+    const linkRect = link.getBoundingClientRect();
+    nav.style.setProperty("--indicator-left", `${linkRect.left - navRect.left}px`);
+    nav.style.setProperty("--indicator-width", `${linkRect.width}px`);
+    nav.classList.add("has-indicator");
+  }
+
+  function activeLink() {
+    return links.find((a) => a.classList.contains("is-active"));
+  }
+
+  links.forEach((link) => {
+    link.addEventListener("mouseenter", () => moveTo(link));
+  });
+  nav.addEventListener("mouseleave", () => moveTo(activeLink()));
+
+  moveTo(activeLink());
+  window.addEventListener("resize", () => moveTo(nav.matches(":hover") ? null : activeLink()));
 }
 
 /* Products nav dropdown: hover-reveal on desktop, tap-to-expand on mobile

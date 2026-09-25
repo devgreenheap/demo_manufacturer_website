@@ -85,7 +85,17 @@ def inject_globals():
         "company": data.COMPANY_INFO,
         "nav_categories": data.CATEGORIES,
         "static_build": Config.STATIC_BUILD,
+        "asset_version": asset_version(),
     }
+
+
+def asset_version():
+    """Mtime of style.css, used to cache-bust the stylesheet link so browsers
+    always pick up CSS edits instead of serving a stale cached copy."""
+    try:
+        return int(os.path.getmtime(os.path.join(app.static_folder, "css", "style.css")))
+    except OSError:
+        return 0
 
 
 @app.route("/")
